@@ -31,4 +31,8 @@ public class RolesService {
         rolesRepository.deleteById(id);
     }
 
+    public void updateRolesEntity(RolesEntity rolesEntity){
+        rolesRepository.save(rolesEntity);
+    }
+
 }

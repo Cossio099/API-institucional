@@ -1,8 +1,11 @@
 package com.universidad.proyectouniversidad.Entity;
 
+import java.util.List;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -10,13 +13,22 @@ import jakarta.persistence.Table;
 public class RolesEntity {
     @Id
     private long id;
+    @Column(name = "rol", nullable = false)
     private String rol;
 
-    @OneToOne(mappedBy = "rol")
-    private EstudianteEntity estudianteEntity;
+    @OneToMany(mappedBy = "rolesEstudiante")
+    private List<EstudianteEntity> estudianteEntity;
 
-    @OneToOne(mappedBy = "rol")
-    private ProfesorEntity profesorEntity;
+    @OneToMany(mappedBy = "rolesProfesor")
+    private List<ProfesorEntity> profesorEntity;
+
+    public List<ProfesorEntity> getProfesorEntity() {
+        return profesorEntity;
+    }
+
+    public void setProfesorEntity(List<ProfesorEntity> profesorEntity) {
+        this.profesorEntity = profesorEntity;
+    }
 
     public long getId() {
         return id;
@@ -34,11 +46,11 @@ public class RolesEntity {
         this.rol = rol;
     }
 
-    public EstudianteEntity getEstudianteEntity() {
+    public List<EstudianteEntity> getEstudianteEntity() {
         return estudianteEntity;
     }
 
-    public void setEstudianteEntity(EstudianteEntity estudianteEntity) {
+    public void setEstudianteEntity(List<EstudianteEntity> estudianteEntity) {
         this.estudianteEntity = estudianteEntity;
     }
 }

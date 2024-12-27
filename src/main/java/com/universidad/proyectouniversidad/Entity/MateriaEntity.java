@@ -23,8 +23,15 @@ public class MateriaEntity {
     private EstudianteEntity estudiante;
     private int dificult;
     private int num_credits;
+    private String description;
 
 
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
     public Long getId() {
         return id;
     }

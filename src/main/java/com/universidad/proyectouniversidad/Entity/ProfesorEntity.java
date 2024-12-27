@@ -6,8 +6,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,28 +15,34 @@ import jakarta.persistence.Table;
 public class ProfesorEntity {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private long id;
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "last_name", nullable = false)
     private String last_name;
+    @Column(name = "phone", nullable = false)
     private int phone;
+    @Column(name = "email", nullable = false)
     private String email;
+    @Column(name = "area_career", nullable = false)
     private String area_career;
-    private String adress;
+    @Column(name = "address", nullable = false)
+    private String address;
 
-    @OneToOne
-    @JoinColumn(name = "id_rol")
-    private RolesEntity rol;
+    @ManyToOne
+    @JoinColumn(name = "id_rol", nullable = false)
+    private RolesEntity rolesProfesor;
 
     @OneToMany(mappedBy = "profesor")
     private List<MateriaEntity> materiasEntity;
 
     public RolesEntity getRolesEntity() {
-        return rol;
+        return rolesProfesor;
     }
 
-    public void setRolesEntity(RolesEntity rol) {
-        this.rol = rol;
+    public void setRolesEntity(RolesEntity rolesProfesor) {
+        this.rolesProfesor = rolesProfesor;
     }
 
     public List<MateriaEntity> getMateriasEntity() {
@@ -95,12 +101,12 @@ public class ProfesorEntity {
         this.area_career = area_career;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 }

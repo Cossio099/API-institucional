@@ -31,4 +31,7 @@ public class MateriaService {
         materiaRepository.deleteById(id);
     }
 
+    public void updateMateriaEntity(MateriaEntity materiaEntity){
+        materiaRepository.save(materiaEntity);
+    }
 }

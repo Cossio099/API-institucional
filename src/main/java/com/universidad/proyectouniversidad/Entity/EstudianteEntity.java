@@ -6,8 +6,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,25 +17,31 @@ public class EstudianteEntity {
     @Id
     @Column(name = "id", nullable = false)
     private long id;
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "last_name", nullable = false)
     private String last_name;
+    @Column(name = "phone", nullable = false)
     private int phone;
+    @Column(name = "email", nullable = false)
     private String email;
+    @Column(name = "career", nullable = false)
     private String career;
+    @Column(name = "address", nullable = false)
     private String address;
-    @OneToOne
-    @JoinColumn(name = "id_rol", nullable = false)
-    private RolesEntity rol;
+    @ManyToOne
+    @JoinColumn(name = "rol", nullable = false)
+    private RolesEntity rolesEstudiante;
     @OneToMany(mappedBy = "estudiante")
     private List<MateriaEntity> materiasEntity;
     public long getId() {
         return id;
     }
     public RolesEntity getRol() {
-        return rol;
+        return rolesEstudiante;
     }
-    public void setRol(RolesEntity rol) {
-        this.rol = rol;
+    public void setRol(RolesEntity rolesEstudiante) {
+        this.rolesEstudiante = rolesEstudiante;
     }
     public List<MateriaEntity> getMateriasEntity() {
         return materiasEntity;
@@ -76,11 +82,11 @@ public class EstudianteEntity {
     public void setCareer(String career) {
         this.career = career;
     }
-    public String getAdress() {
+    public String getAddress() {
         return address;
     }
-    public void setAdress(String adress) {
-        this.address = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 }
